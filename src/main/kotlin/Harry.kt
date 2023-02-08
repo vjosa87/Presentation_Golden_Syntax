@@ -1,6 +1,6 @@
 open class Harry(name: String, hp: Int, level: Int) : Helden(name, hp, level) {
 
-    // TODO Zauberkräfte auflisten
+    // Auflistung von Zaubersprüchen.
     override var listeZauberspruch: MutableList<String> = mutableListOf(
         "1 Nox",
         "2 Petrificus Totalus",
@@ -9,13 +9,13 @@ open class Harry(name: String, hp: Int, level: Int) : Helden(name, hp, level) {
         "5 Beutel"
     )
 
-    // TODO Held attackiert
+    // Vererbung der Funktion "Angriff Helden". Auswahl der "Attacke" in der Konsole & Überprüfung des K.O. Status.
     override fun angriffHelden(gegner: Gegner) {
         println("Wähle einen Zauberspruch aus $listeZauberspruch")
         println("---")
         var attack = readln().toInt()
-        if (attack < listeZauberspruch.size){
-        var check = listeZauberspruch.get(attack-1)
+        if (attack < listeZauberspruch.size) {
+            var check = listeZauberspruch.get(attack - 1)
 
 
             if (!this.isKo && !gegner.isKo) {

@@ -1,6 +1,6 @@
 class Grindelwald(name: String, hp: Int, level: Int) : Gegner(name, hp, level) {
 
-    // TODO Liste Zauberkraft
+    // Auflistung & Vererbung der Zauberspruchliste.
     override var listeZauberspruch: List<String> = listOf(
         "Ratzeputz",
         "Waddiwasi",
@@ -10,9 +10,11 @@ class Grindelwald(name: String, hp: Int, level: Int) : Gegner(name, hp, level) {
         "Spuck Schnecken"
     )
 
-    //TODO Angriff des Gegners // (override?!)
+    // Vererbung der Funktion "Angriff Gegner" & Überprüfung des K.O. Status.
     override fun angriffGegner(held: Helden, listeGegner: MutableList<Gegner>) {
-        if (!this.isKo && !held.isKo) {
+        if (this.isKo) {
+            println("Der Gegner Grindelwald ist K.O.!")
+        } else {
             var aktuellerZauberspruch = listeZauberspruch.random()
             println("Es wurde der Zauberspruch: $aktuellerZauberspruch ausgewählt")
             println()
@@ -21,8 +23,7 @@ class Grindelwald(name: String, hp: Int, level: Int) : Gegner(name, hp, level) {
             when (aktuellerZauberspruch) {
 
                 "Ratzeputz" -> {
-
-                    schaden = 2.5 * schadenswert
+                    schaden = 3.0 * schadenswert
                 }
 
                 "Waddiwasi" -> {
@@ -44,21 +45,16 @@ class Grindelwald(name: String, hp: Int, level: Int) : Gegner(name, hp, level) {
                 "Spuck Schnecken" -> {
                     schaden = 0.50 * schadenswert
                 }
-
             }
             when (held.name) {
                 "Ratzeputz" -> {
                     schaden *= 3.0
                 }
-
             }
 
-            // TODO println
             println("${this.name} greift ${held.name} mit $aktuellerZauberspruch für ${schaden.toInt()} an.")
 
             held.loseHp(schaden.toInt())
-        } else if (held.hp <= 0) {
-            println("Angriff kann nicht ausgeführt werden, Held ${held.name} hat bereits verloren.")
         }
     }
 }

@@ -1,22 +1,20 @@
-
-//TODO main function
 fun main() {
 
     println("*Harry Potter & Golden Syntax*")
     println(" ")
 
-    // TODO Instanzvariablen
-    var harry = Harry("Harry", 400, 80)
-    var hermine = Hermine("Hermine", 350, 60)
-    var ron = Ron("Ron", 200, 25)
-    var voldemort = Voldemort("Voldemort", 500, 100)
-    var grindelwald = Grindelwald("Grindelwald",  300, 20)
-    var zabini = Zabini("Zabini", 200, 15)
+    // Instanzvariablen
+    var harry = Harry("Harry", 30, 10)
+    var hermine = Hermine("Hermine", 30, 6)
+    var ron = Ron("Ron", 10, 5)
+    var voldemort = Voldemort("Voldemort", 30, 15)
+    var grindelwald = Grindelwald("Grindelwald", 10, 12)
+    var zabini = Zabini("Zabini", 10, 10)
 
     var listeHelden: MutableList<Helden> = mutableListOf(harry, hermine, ron)
     var listeGegner: MutableList<Gegner> = mutableListOf(voldemort, grindelwald, zabini)
 
-    // TODO Angriffsliste
+    // Angriffsliste
     angriff(harry, hermine, ron, voldemort, grindelwald, zabini, listeHelden, listeGegner)
 
 }

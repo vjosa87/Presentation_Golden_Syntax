@@ -1,18 +1,16 @@
-
-// TODO Vererbung
 class Voldemort(name: String, hp: Int, level: Int) : Gegner(name, hp, level) {
 
-    // TODO Liste Zauberkraft
+    // Auflistung & Vererbung der Zauberspruchliste.
     override var listeZauberspruch: List<String> = listOf(
         "Reducio",
         "Confringo",
         "Locomotor Mortis",
         "Petrificus Totalus",
         "Nox",
-        "Amnesia"
+        "Amnesia",
     )
 
-    //TODO Angriff des Gegners // (override?!)
+    // Vererbung der Funktion "Angriff Gegner" & Überprüfung des K.O. Status.
     override fun angriffGegner(held: Helden, listeGegner: MutableList<Gegner>) {
         if (!this.isKo && !held.isKo) {
             var aktuellerZauberspruch = listeZauberspruch.random()
@@ -24,7 +22,7 @@ class Voldemort(name: String, hp: Int, level: Int) : Gegner(name, hp, level) {
 
                 "Reducio" -> {
 
-                    schaden = 1.0 * schadenswert
+                    schaden = 3.0 * schadenswert
                 }
 
                 "Confringo" -> {

@@ -1,6 +1,7 @@
 open class Beutel(
     var anzahl: Int = 3,
     var anzahl1: Int = 1,
+    var beutel: Beutel = Beutel()
 ) {
 
     // TODO Zaubertrank

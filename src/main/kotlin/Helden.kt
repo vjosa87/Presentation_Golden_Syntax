@@ -1,10 +1,10 @@
-//TODO Klasse Helden
+//Klasse Helden
 open class Helden(
     var name: String,
     var hp: Int,
     var level: Int,
 ) {
-    //TODO Schadenswerte
+    //Schadenswerte ermitteln
     var schadenswerte: Double = 1.5 * level
     var isKo: Boolean = false
 
@@ -20,7 +20,8 @@ open class Helden(
             println("---")
         }
     }
-    //TODO Zaubersprüche und Angriff Funktion
+
+    //Zaubersprüche und Angriff
     open var listeZauberspruch: MutableList<String> = mutableListOf()
     open fun angriffHelden(gegner: Gegner) {}
 }

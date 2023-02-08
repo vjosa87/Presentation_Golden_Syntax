@@ -1,66 +1,69 @@
 open class Hermine(name: String, hp: Int, level: Int) : Helden(name, hp, level) {
 
-    // TODO Zauberkräfte
+    // Auflistung der Zaubersprüche.
     override var listeZauberspruch: MutableList<String> = mutableListOf(
-        "Expelliarmus",
-        "Lumos",
-        "Wingardium",
-        "Imperio",
-        "Beutel",
+        "1 Expelliarmus",
+        "2 Lumos",
+        "3 Wingardium",
+        "4 Imperio",
+        "5 Beutel"
     )
 
-    // TODO Held führt den Angriff aus
+    // Vererbung der Funktion "Angriff Helden". Auswahl der "Attacke" in der Konsole & Überprüfung des K.O. Status.
     override fun angriffHelden(gegner: Gegner) {
-        println("Wähle eine Zauberkraft aus $listeZauberspruch")
-        println("---")
-        var attack = readln()
-        var check = attack in listeZauberspruch
-        if (check) {
 
-            if (!this.isKo && !gegner.isKo) {
+        if (this.isKo) {
+            println("Hermine ist KO.")
 
-                var schaden: Double = this.schadenswerte
-
-                when (attack) {
-
-                    "Expelliarmus" -> {
-                        schaden = 1.5 * schadenswerte
-                    }
-
-                    "Lumos" -> {
-                        schaden = 0.50 * schadenswerte
-                    }
-
-                    "Wingardium" -> {
-                        schaden = 1.5 * schadenswerte
-                    }
-
-                    "Imperio" -> {
-                        schaden = 2.0 * schadenswerte
-                    }
-
-                    "Beutel" -> {
-                        Beutel().zauberTrank(Helden(name, hp, level))
-                    }
-
-                }
-                // TODO Angriff != Beutel
-                if (attack != "Beutel") {
-                    println(
-                        "${this.name} greift ${gegner.name} mit ---" +
-                                "$attack ---für ${schaden.toInt()} an"
-                    )
-                    Gegner.hpLose(gegner, schaden.toInt())
-                    println("---")
-                }
-            } else if (gegner.hp <= 0) {
-                println("Angriff kann nicht ausgeführt werden, Gegner ${gegner.name} hat bereits verloren.")
-
-            }
         } else {
-            println("Fehlerhafte Eingabe. Erneut versuchen!")
+            println("Wähle einen Zauberspruch aus $listeZauberspruch.")
             println("---")
-            angriffHelden(gegner)
+            var attack = readln().toInt()
+            if (attack < listeZauberspruch.size) {
+                var check = listeZauberspruch.get(attack - 1)
+
+                if (!gegner.isKo) {
+
+                    var schaden: Double = this.schadenswerte
+
+                    when (check) {
+
+                        "Expelliarmus" -> {
+                            schaden = 1.5 * schadenswerte
+                        }
+
+                        "Lumos" -> {
+                            schaden = 0.50 * schadenswerte
+                        }
+
+                        "Wingardium" -> {
+                            schaden = 1.5 * schadenswerte
+                        }
+
+                        "Imperio" -> {
+                            schaden = 2.0 * schadenswerte
+                        }
+
+                        "Beutel" -> {
+                            Beutel().zauberTrank(Helden(name, hp, level))
+                        }
+
+                    }
+                    // Beutel "check" und Berechnung des Schadens.
+                    if (check != "Beutel") {
+                        println("${this.name} greift ${gegner.name} mit --- $check --- für ${schaden.toInt()} an")
+                        Gegner.hpLose(gegner, schaden.toInt())
+                        println("---")
+                    }
+                } else {
+                    println("Angriff kann nicht ausgeführt werden, da der Gegner ${gegner.name} bereits verloren hat.")
+
+                }
+            } else {
+                println("Fehlerhafte Eingabe. Erneut versuchen!")
+                println("---")
+                angriffHelden(gegner)
+            }
         }
     }
 }
